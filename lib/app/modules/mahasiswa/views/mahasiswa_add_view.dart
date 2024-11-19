@@ -32,12 +32,21 @@ class MahasiswaAddView extends GetView<MahasiswaController> {
               decoration: InputDecoration(labelText: "Nama"),
             ),
             SizedBox(
+              height: 10,
+            ),
+            TextField(
+              controller: controller.cAlamat,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(labelText: "Alamat"),
+            ),
+            SizedBox(
               height: 30,
             ),
             ElevatedButton(
               onPressed: () => controller.add(
                 controller.cNpm.text,
                 controller.cNama.text,
+                controller.cAlamat.text,
               ),
               child: Text("Simpan"),
             )
