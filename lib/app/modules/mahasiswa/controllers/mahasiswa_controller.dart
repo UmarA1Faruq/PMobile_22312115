@@ -20,6 +20,7 @@ class MahasiswaController extends GetxController {
     return mahasiswa.snapshots();
   }
 
+// Bagian Tambah Data
   void add(String npm, String nama, String alamat) async {
     CollectionReference mahasiswa = firestore.collection("mahasiswa");
 
@@ -50,6 +51,7 @@ class MahasiswaController extends GetxController {
     }
   }
 
+// Bagian Update Data
   Future<DocumentSnapshot<Object?>> GetDataById(String id) async {
     DocumentReference docRef = firestore.collection("mahasiswa").doc(id);
 
@@ -83,6 +85,34 @@ class MahasiswaController extends GetxController {
       Get.defaultDialog(
         title: "Terjadi Kesalahan",
         middleText: "Gagal Menambahkan Mahasiswa.",
+      );
+    }
+  }
+
+// Bagian Delete data
+  void delete(String id) {
+    DocumentReference docRef = firestore.collection("mahasiswa").doc(id);
+
+    try {
+      Get.defaultDialog(
+        title: "Info",
+        middleText: "Apakah anda yakin menghapus data ini ?",
+        onConfirm: () {
+          docRef.delete();
+          Get.back();
+          Get.defaultDialog(
+            title: "Sukses",
+            middleText: "Berhasil menghapus data",
+          );
+        },
+        textConfirm: "Ya",
+        textCancel: "Batal",
+      );
+    } catch (e) {
+      print(e);
+      Get.defaultDialog(
+        title: "Terjadi kesalahan",
+        middleText: "Tidak berhasil menghapus data",
       );
     }
   }
