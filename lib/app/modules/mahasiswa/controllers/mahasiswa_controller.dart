@@ -50,6 +50,43 @@ class MahasiswaController extends GetxController {
     }
   }
 
+  Future<DocumentSnapshot<Object?>> GetDataById(String id) async {
+    DocumentReference docRef = firestore.collection("mahasiswa").doc(id);
+
+    return docRef.get();
+  }
+
+  void Update(String npm, String nama, String alamat, String id) async {
+    DocumentReference mahasiswaById = firestore.collection("mahasiswa").doc(id);
+
+    try {
+      await mahasiswaById.update({
+        "npm": npm,
+        "nama": nama,
+        "alamat": alamat,
+      });
+
+      Get.defaultDialog(
+        title: "Berhasil",
+        middleText: "Berhasil mengubah data Mahasiswa.",
+        onConfirm: () {
+          cNpm.clear();
+          cNama.clear();
+          cAlamat.clear();
+          Get.back();
+          Get.back();
+        },
+        textConfirm: "OK",
+      );
+    } catch (e) {
+      print(e);
+      Get.defaultDialog(
+        title: "Terjadi Kesalahan",
+        middleText: "Gagal Menambahkan Mahasiswa.",
+      );
+    }
+  }
+
   @override
   void onInit() {
     // TODO: implement onInit
