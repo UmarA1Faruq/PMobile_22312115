@@ -7,6 +7,7 @@ import '../controllers/mahasiswa_controller.dart';
 
 class MahasiswaView extends GetView<MahasiswaController> {
   const MahasiswaView({super.key});
+
   @override
   Widget build(BuildContext context) {
     // stream builder digunakan untuk mengambil data dari firebase secara real-time
@@ -44,3 +45,4 @@ class MahasiswaView extends GetView<MahasiswaController> {
         });
   }
 }
+ 
