@@ -117,7 +117,6 @@ class AuthController extends GetxController {
         await FirebaseAuth.instance.signInWithCredential(credential);
         Get.offAllNamed(Routes.HOME);
         print(googleUser);
-        
       } else {
         throw "Belum Memilih Akun Google";
       }
